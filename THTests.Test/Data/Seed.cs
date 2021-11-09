@@ -33,6 +33,32 @@ namespace THTests.Test.Data
 
             _context.Properties.Add(p2);
             await _context.SaveChangesAsync();
+
+            TH.Models.Property p3 = new TH.Models.Property()
+            {
+                title = "Title 3",
+                address = "Adress 3",
+                description = "Description 3",
+                creted_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                status = "Disable",
+                disabled_at = DateTime.Now
+            };
+
+            _context.Properties.Add(p3);
+            await _context.SaveChangesAsync();
+
+            TH.Models.Activity a1 = new TH.Models.Activity()
+            {
+                property_id = p1.id,
+                schedule = DateTime.Now,
+                title = "Activity 1",
+                creted_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                status = "Active"
+            };
+            _context.Activities.Add(a1);
+            await _context.SaveChangesAsync();
         }
     }
 }
