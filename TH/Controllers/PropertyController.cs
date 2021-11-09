@@ -65,6 +65,8 @@ namespace TH.Controllers
         {
             try
             {
+                property.status = "Active";
+
                 if(!property.IsValid())
                 {
                     return BadRequest(property);
@@ -96,6 +98,11 @@ namespace TH.Controllers
                 if (property == null)
                 {
                     return NotFound(id);
+                }
+
+                if(property.IsDisabled())
+                {
+                    return Accepted(id);
                 }
 
                 property.status = "Disable";

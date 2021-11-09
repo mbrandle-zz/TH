@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TH.Models;
+﻿using TH.Models;
 
 namespace TH.Classes
 {
@@ -32,6 +28,16 @@ namespace TH.Classes
                 return false;
             }
             if (property.status == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool IsDisabled(this Property property)
+        {
+            if (property.status == "Active")
             {
                 return false;
             }

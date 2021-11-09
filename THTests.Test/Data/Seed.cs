@@ -15,7 +15,7 @@ namespace THTests.Test.Data
                 description = "Description 1",
                 creted_at = DateTime.Now,
                 updated_at = DateTime.Now,
-                status = "active"
+                status = "Active"
             };
 
             _context.Properties.Add(p1);
@@ -28,7 +28,7 @@ namespace THTests.Test.Data
                 description = "Description 2",
                 creted_at = DateTime.Now,
                 updated_at = DateTime.Now,
-                status = "active"
+                status = "Active"
             };
 
             _context.Properties.Add(p2);

@@ -92,5 +92,35 @@ namespace THTests.Test.Property
             Assert.Equal(0, totalProperties);
             Assert.IsType<BadRequestObjectResult>(response.Result);
         }
+
+
+        //Test Disable Property
+        [Fact]
+        public async Task PuedeInhabilitarPropertyById()
+        {
+            await seed.StartSeed(_context);
+            PropertyController propertyController = new PropertyController(_context);
+
+            int id = 1;
+
+            var response = propertyController.DisableProperty(id);
+            TH.Models.Property property = await _context.Properties.FirstOrDefaultAsync(p => p.id == id);
+
+            Assert.Equal("Disable", property.status);            
+            Assert.IsType<AcceptedResult>(response.Result);
+        }
+
+        [Fact]
+        public async Task NoPuedeInhabilitarPropertySiNoExisteElId()
+        {
+            await seed.StartSeed(_context);
+            PropertyController propertyController = new PropertyController(_context);
+
+            int id = 100;
+
+            var response = propertyController.DisableProperty(id);
+
+            Assert.IsType<NotFoundObjectResult>(response.Result);
+        }
     }
 }
