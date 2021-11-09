@@ -22,7 +22,7 @@ namespace TH.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> AddActivity(Activity activity)
         {
             try
@@ -34,7 +34,7 @@ namespace TH.Controllers
                     return BadRequest("The Property Is Not Valid");
                 }
 
-                if (!await activity.isScheduleValidAsync(_context))
+                if (!await activity.IsScheduleValidAsync(_context))
                 {
                     return BadRequest("The Schedule Is Not Valid");
                 }
@@ -49,6 +49,30 @@ namespace TH.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error");
             }
             
+        }
+
+        [Route("[action]/{id}")]
+        [HttpPatch]
+        public async Task<IActionResult> UpdateSchedule(int id, DateTime newSchedule)
+        {
+            Activity activity = await _context.Activities.FirstOrDefaultAsync(a => a.id == id);
+            activity.schedule = newSchedule;
+
+            if (!activity.IsActive() )
+            {
+                return BadRequest("The Activity Is Not Valid");
+            }
+
+            if (!await activity.IsScheduleValidAsync(_context))
+            {
+                return BadRequest("The Schedule Is Not Valid");
+            }
+
+            
+            _context.Attach(activity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return Ok(" Schedule Updated ID: " + id);
         }
     }
 }

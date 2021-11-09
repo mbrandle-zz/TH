@@ -11,16 +11,32 @@ namespace TH.Classes
     public static class ActivityFunctions
     {
 
-        public static async Task<bool> isScheduleValidAsync(this Activity activiy, AppDBContext _context)
+        public static async Task<bool> IsScheduleValidAsync(this Activity activiy, AppDBContext _context)
         {
             Activity activityAvailable = await _context.Activities
                 .FirstOrDefaultAsync
                 (
-                    a => a.property_id == activiy.property_id &&
-                    ( a.schedule <= activiy.schedule && a.schedule.AddMinutes(60) >= activiy.schedule)
+                    a => a.property_id == activiy.property_id &&(
+                    ( a.schedule <= activiy.schedule && a.schedule.AddMinutes(60)>=activiy.schedule)
+                    || (a.schedule <= activiy.schedule.AddMinutes(60) && a.schedule.AddMinutes(60) >= activiy.schedule.AddMinutes(60)))
                 );
 
-            if(activityAvailable == null)
+            if (activityAvailable == null)
+            {
+                return true;
+            }
+
+            if(activityAvailable.id == activiy.id)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool IsActive(this Activity activity)
+        {
+            if (activity.status.Equals("Active"))
             {
                 return true;
             }

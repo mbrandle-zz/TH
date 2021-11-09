@@ -59,6 +59,30 @@ namespace THTests.Test.Data
             };
             _context.Activities.Add(a1);
             await _context.SaveChangesAsync();
+
+            TH.Models.Activity a2 = new TH.Models.Activity()
+            {
+                property_id = p1.id,
+                schedule = DateTime.Now.AddHours(2),
+                title = "Activity 2",
+                creted_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                status = "Active"
+            };
+            _context.Activities.Add(a2);
+            await _context.SaveChangesAsync();
+
+            TH.Models.Activity a3 = new TH.Models.Activity()
+            {
+                property_id = p1.id,
+                schedule = DateTime.Now.AddHours(3),
+                title = "Activity 2",
+                creted_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                status = "Cancel"
+            };
+            _context.Activities.Add(a3);
+            await _context.SaveChangesAsync();
         }
     }
 }
