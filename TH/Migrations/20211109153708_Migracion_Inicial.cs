@@ -17,7 +17,7 @@ namespace TH.Migrations
                     title = table.Column<string>(maxLength: 255, nullable: false),
                     address = table.Column<string>(nullable: false),
                     description = table.Column<string>(nullable: false),
-                    creted_at = table.Column<DateTime>(nullable: false),
+                    created_at = table.Column<DateTime>(nullable: false),
                     updated_at = table.Column<DateTime>(nullable: false),
                     disabled_at = table.Column<DateTime>(nullable: false),
                     status = table.Column<string>(maxLength: 35, nullable: false)
@@ -36,7 +36,7 @@ namespace TH.Migrations
                     property_id = table.Column<int>(nullable: false),
                     schedule = table.Column<DateTime>(nullable: false),
                     title = table.Column<string>(maxLength: 255, nullable: false),
-                    creted_at = table.Column<DateTime>(nullable: false),
+                    created_at = table.Column<DateTime>(nullable: false),
                     updated_at = table.Column<DateTime>(nullable: false),
                     status = table.Column<string>(maxLength: 35, nullable: false)
                 },
@@ -59,7 +59,7 @@ namespace TH.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     activity_id = table.Column<int>(nullable: false),
                     answers = table.Column<string>(type: "jsonb", nullable: false),
-                    creted_at = table.Column<DateTime>(nullable: false)
+                    created_at = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -24,7 +24,7 @@ namespace THTests.Test.Activity
                 property_id = 1,
                 schedule = DateTime.Now.AddDays(3),
                 title = "Activity 2",
-                creted_at = DateTime.Now,
+                created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 status = "Active"
             };
@@ -35,7 +35,7 @@ namespace THTests.Test.Activity
             int totalActivities = await _context.Activities.CountAsync();
 
             Assert.Equal(4, totalActivities);
-            Assert.IsType<CreatedAtActionResult>(response.Result);
+            Assert.IsType<OkObjectResult>(response.Result);
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace THTests.Test.Activity
                 property_id = 1,
                 schedule = DateTime.Now.AddMinutes(90),
                 title = "Activity 2",
-                creted_at = DateTime.Now,
+                created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 status = "Active"
             };
@@ -70,7 +70,7 @@ namespace THTests.Test.Activity
                 property_id = 3,
                 schedule = DateTime.Now.AddMinutes(90),
                 title = "Activity 2",
-                creted_at = DateTime.Now,
+                created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 status = "Active"
             };
@@ -140,6 +140,33 @@ namespace THTests.Test.Activity
             var response = activityController.CancelarActivityAsync(id);
 
             Assert.IsType<BadRequestObjectResult>(response.Result);
+        }
+
+
+        //Test Get Activities
+        [Fact]
+        public async Task PuedeObtenerLasActividadesSinParametros()
+        {
+            await seed.StartSeed(_context);
+            ActivityController activityController = new ActivityController(_context);
+
+            var response = activityController.GetActividadesAsync();
+
+            Assert.IsType<OkObjectResult>(response.Result);
+        }
+
+        [Fact]
+        public async Task PuedeObtenerLasActividadesConParametros()
+        {
+            await seed.StartSeed(_context);
+            ActivityController activityController = new ActivityController(_context);
+
+            DateTime startDate = DateTime.Now;
+            DateTime endDate = DateTime.Now.AddDays(3);
+
+            var response = activityController.GetActividadesAsync(startDate,endDate);
+
+            Assert.IsType<OkObjectResult>(response.Result);
         }
     }
 }

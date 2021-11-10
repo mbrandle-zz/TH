@@ -20,6 +20,6 @@ namespace TH.Models
         public string answers { get; set; }
 
         [Required]
-        public DateTime creted_at { get; set; }
+        public DateTime created_at { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace TH.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<DateTime>("creted_at")
+                    b.Property<DateTime>("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("property_id")
@@ -66,7 +66,7 @@ namespace TH.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("creted_at")
+                    b.Property<DateTime>("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("description")
@@ -108,7 +108,7 @@ namespace TH.Migrations
                         .IsRequired()
                         .HasColumnType("jsonb");
 
-                    b.Property<DateTime>("creted_at")
+                    b.Property<DateTime>("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("id");

@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20211110163718_correccion_errores.cs" />
+    <Compile Remove="Migrations\20211110163718_correccion_errores.Designer.cs" />
+    <Compile Remove="Migrations\20211110164130_correccion_errores.cs" />
+    <Compile Remove="Migrations\20211110164130_correccion_errores.Designer.cs" />
+    <Compile Remove="Migrations\20211110164856_correcciones_de_columnas.cs" />
+    <Compile Remove="Migrations\20211110164856_correcciones_de_columnas.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
@@ -14,6 +23,10 @@
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="MSTest.TestFramework" Version="2.2.7" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Utilities\" />
   </ItemGroup>
 
 

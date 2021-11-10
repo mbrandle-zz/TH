@@ -13,7 +13,7 @@ namespace THTests.Test.Data
                 title = "Title 1",
                 address = "Adress 1",
                 description = "Description 1",
-                creted_at = DateTime.Now,
+                created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 status = "Active"
             };
@@ -26,7 +26,7 @@ namespace THTests.Test.Data
                 title = "Title 2",
                 address = "Adress 2",
                 description = "Description 2",
-                creted_at = DateTime.Now,
+                created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 status = "Active"
             };
@@ -39,7 +39,7 @@ namespace THTests.Test.Data
                 title = "Title 3",
                 address = "Adress 3",
                 description = "Description 3",
-                creted_at = DateTime.Now,
+                created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 status = "Disable",
                 disabled_at = DateTime.Now
@@ -53,7 +53,7 @@ namespace THTests.Test.Data
                 property_id = p1.id,
                 schedule = DateTime.Now,
                 title = "Activity 1",
-                creted_at = DateTime.Now,
+                created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 status = "Active"
             };
@@ -65,7 +65,7 @@ namespace THTests.Test.Data
                 property_id = p1.id,
                 schedule = DateTime.Now.AddHours(2),
                 title = "Activity 2",
-                creted_at = DateTime.Now,
+                created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 status = "Active"
             };
@@ -77,7 +77,7 @@ namespace THTests.Test.Data
                 property_id = p1.id,
                 schedule = DateTime.Now.AddHours(3),
                 title = "Activity 3",
-                creted_at = DateTime.Now,
+                created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 status = "Cancel"
             };

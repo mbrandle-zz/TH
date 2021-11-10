@@ -19,7 +19,7 @@ namespace TH.Classes
             {
                 return false;
             }
-            if (property.creted_at == null)
+            if (property.created_at == null)
             {
                 return false;
             }

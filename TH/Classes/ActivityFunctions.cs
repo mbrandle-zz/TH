@@ -45,5 +45,26 @@ namespace TH.Classes
             return false;
         }
 
+        public static string GetCondition(this Activity activity)
+        {
+            string condition = "";
+
+            if (activity.status.Equals("Done"))
+            {
+                condition = "Finalizada";
+            }
+
+            if (activity.status.Equals("Active") && activity.schedule >= DateTime.Now)
+            {
+                condition = "Pendiente a realizar";
+            }
+            else if (activity.status.Equals("Active") && activity.schedule < DateTime.Now)
+            {
+                condition = "Atrasada";
+            }
+
+            return condition;
+        }
+
     }
 }

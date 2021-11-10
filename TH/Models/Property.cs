@@ -19,7 +19,7 @@ namespace TH.Models
         public string description { get; set; }
 
         [Required]
-        public DateTime creted_at { get; set; }
+        public DateTime created_at { get; set; }
 
         [Required]
         public DateTime updated_at { get; set; }

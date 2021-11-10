@@ -58,7 +58,7 @@ namespace THTests.Test.Property
                 title = "Title 1",
                 address = "Adress 1",
                 description = "Description 1",
-                creted_at = DateTime.Now,
+                created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 status = "active"
             };
@@ -69,7 +69,7 @@ namespace THTests.Test.Property
             int totalProperties = await _context.Properties.CountAsync();
 
             Assert.Equal(1, totalProperties);
-            Assert.IsType<CreatedAtActionResult>(response.Result);
+            Assert.IsType<OkObjectResult>(response.Result);
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace THTests.Test.Property
             {               
                 address = "Adress 1",
                 description = "Description 1",
-                creted_at = DateTime.Now,
+                created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 status = "active"
             };

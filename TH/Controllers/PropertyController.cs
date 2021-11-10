@@ -35,7 +35,8 @@ namespace TH.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [Route("{id}")]
+        [HttpGet]
         public async Task<IActionResult> GetPropertyByIdAsync(int? id)
         {
             try
@@ -60,7 +61,7 @@ namespace TH.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> AddProperty(Property property)
         {
             try
@@ -75,7 +76,7 @@ namespace TH.Controllers
                 _context.Properties.Add(property);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction("New Property", "ID: " + property.id);
+                return Ok(property);
 
             }
             catch (Exception ex)
@@ -84,7 +85,8 @@ namespace TH.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [Route("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> DisableProperty(int? id)
         {
             try
