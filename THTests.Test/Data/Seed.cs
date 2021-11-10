@@ -76,7 +76,7 @@ namespace THTests.Test.Data
             {
                 property_id = p1.id,
                 schedule = DateTime.Now.AddHours(3),
-                title = "Activity 2",
+                title = "Activity 3",
                 creted_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 status = "Cancel"

@@ -16,7 +16,7 @@ namespace THTests.Test.Activity
 
         //Test Add Activity
         [Fact]
-        public async Task PuedeAgregarActivityAsync()
+        public async Task PuedeAgregarActivity()
         {
             await seed.StartSeed(_context);
             TH.Models.Activity a1 = new TH.Models.Activity()
@@ -31,7 +31,7 @@ namespace THTests.Test.Activity
 
             ActivityController activityController = new ActivityController(_context);
 
-            var response = activityController.AddActivity(a1);
+            var response = activityController.AddActivityAsync(a1);
             int totalActivities = await _context.Activities.CountAsync();
 
             Assert.Equal(4, totalActivities);
@@ -39,7 +39,7 @@ namespace THTests.Test.Activity
         }
 
         [Fact]
-        public async Task NoPuedeAgregarActivityEnElMismoHorarioAsync()
+        public async Task NoPuedeAgregarActivityEnElMismoHorario()
         {
             await seed.StartSeed(_context);
             TH.Models.Activity a1 = new TH.Models.Activity()
@@ -54,7 +54,7 @@ namespace THTests.Test.Activity
 
             ActivityController activityController = new ActivityController(_context);
 
-            var response = activityController.AddActivity(a1);
+            var response = activityController.AddActivityAsync(a1);
             int totalActivities = await _context.Activities.CountAsync();
 
             Assert.Equal(3, totalActivities);
@@ -62,7 +62,7 @@ namespace THTests.Test.Activity
         }
 
         [Fact]
-        public async Task NoPuedeAgregarActivityEnUnPropertyDesactivadoAsync()
+        public async Task NoPuedeAgregarActivityEnUnPropertyDesactivado()
         {
             await seed.StartSeed(_context);
             TH.Models.Activity a1 = new TH.Models.Activity()
@@ -77,7 +77,7 @@ namespace THTests.Test.Activity
 
             ActivityController activityController = new ActivityController(_context);
 
-            var response = activityController.AddActivity(a1);
+            var response = activityController.AddActivityAsync(a1);
             int totalActivities = await _context.Activities.CountAsync();
 
             Assert.Equal(3, totalActivities);
@@ -86,7 +86,7 @@ namespace THTests.Test.Activity
 
         //Test Reagendar Actividades
         [Fact]
-        public async Task PuedeReagendarAsync()
+        public async Task PuedeReagendar()
         {
             await seed.StartSeed(_context);
             int id = 1;
@@ -94,13 +94,13 @@ namespace THTests.Test.Activity
 
             ActivityController activityController = new ActivityController(_context);
 
-            var response = activityController.UpdateSchedule(id, DateTime.Now.AddMinutes(15));
+            var response = activityController.UpdateScheduleAsync(id, DateTime.Now.AddMinutes(15));
 
             Assert.IsType<OkObjectResult>(response.Result);
         }
 
         [Fact]
-        public async Task NoPuedeReagendarSiLaFechaNoEstaDisponibleAsync()
+        public async Task NoPuedeReagendarSiLaFechaNoEstaDisponible()
         {
             await seed.StartSeed(_context);
             int id = 1;
@@ -108,7 +108,36 @@ namespace THTests.Test.Activity
 
             ActivityController activityController = new ActivityController(_context);
 
-            var response = activityController.UpdateSchedule(id, DateTime.Now.AddMinutes(90));
+            var response = activityController.UpdateScheduleAsync(id, DateTime.Now.AddMinutes(90));
+
+            Assert.IsType<BadRequestObjectResult>(response.Result);
+        }
+
+        //Test Cancelar Activity
+        [Fact]
+        public async Task PuedeCancelarUnaActividad()
+        {
+            await seed.StartSeed(_context);
+            int id = 1;            
+
+            ActivityController activityController = new ActivityController(_context);
+
+            var response = activityController.CancelarActivityAsync(id);
+            TH.Models.Activity activity = await _context.Activities.FirstOrDefaultAsync(a => a.id == id);
+
+            Assert.Equal("Cancel", activity.status);
+            Assert.IsType<OkObjectResult>(response.Result);
+        }
+
+        [Fact]
+        public async Task NoPuedeCancelarUnaActividadInactiva()
+        {
+            await seed.StartSeed(_context);
+            int id = 3;
+
+            ActivityController activityController = new ActivityController(_context);
+
+            var response = activityController.CancelarActivityAsync(id);
 
             Assert.IsType<BadRequestObjectResult>(response.Result);
         }

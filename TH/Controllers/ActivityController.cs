@@ -23,7 +23,7 @@ namespace TH.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddActivity(Activity activity)
+        public async Task<IActionResult> AddActivityAsync(Activity activity)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace TH.Controllers
 
         [Route("[action]/{id}")]
         [HttpPatch]
-        public async Task<IActionResult> UpdateSchedule(int id, DateTime newSchedule)
+        public async Task<IActionResult> UpdateScheduleAsync(int id, DateTime newSchedule)
         {
             Activity activity = await _context.Activities.FirstOrDefaultAsync(a => a.id == id);
             activity.schedule = newSchedule;
@@ -73,6 +73,24 @@ namespace TH.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(" Schedule Updated ID: " + id);
+        }
+
+        [Route("[action]/{id}")]
+        [HttpPatch]
+        public async Task<IActionResult> CancelarActivityAsync(int id)
+        {
+            Activity activity = await _context.Activities.FirstOrDefaultAsync(a => a.id == id);
+
+            if (!activity.IsActive())
+            {
+                return BadRequest("The Activity Is Not Valid");
+            }
+
+            activity.status = "Cancel";
+            _context.Attach(activity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return Ok(" Schedule Cancel ID: " + id);
         }
     }
 }

@@ -51,7 +51,7 @@ namespace THTests.Test.Property
 
         //Test Post Property
         [Fact]
-        public async Task PuedeAgregarPropertyAsync()
+        public async Task PuedeAgregarProperty()
         {
             TH.Models.Property p1 = new TH.Models.Property()
             {
@@ -73,7 +73,7 @@ namespace THTests.Test.Property
         }
 
         [Fact]
-        public async Task NoPuedeAgregarPropertySiFaltaUnCampoObligatorioAsync()
+        public async Task NoPuedeAgregarPropertySiFaltaUnCampoObligatorio()
         {
             TH.Models.Property p1 = new TH.Models.Property()
             {               
