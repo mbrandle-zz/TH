@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TH.Data;
 using TH.Models;
+using TH.Utilities;
 
 namespace TH.Controllers
 {
@@ -31,8 +32,7 @@ namespace TH.Controllers
                 return BadRequest("The Survey Is Not Valid");
             }
 
-
-            return Ok($"Encuesta {id}");
+            return base.Content(PaginaEncuesta.GetPagina());
         }
 
     }
